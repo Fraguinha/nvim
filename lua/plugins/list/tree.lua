@@ -6,12 +6,8 @@ return {
     config = function()
         local api = require("nvim-tree.api")
 
-        vim.keymap.set("n", "<C-Space>", function()
-            if vim.bo.ft == "NvimTree" then
-                api.tree.close()
-            else
-                vim.cmd(":edit .")
-            end
+        vim.keymap.set("n", "<Tab><Tab>", function()
+            api.tree.toggle()
         end)
 
         local function node_open_edit()

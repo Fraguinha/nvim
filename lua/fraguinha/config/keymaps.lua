@@ -11,14 +11,7 @@ vim.keymap.set("n", "<leader>c", '"_c')
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
-vim.keymap.set("n", "[b", ":bprev<CR>")
-vim.keymap.set("n", "]b", ":bnext<CR>")
-
 -- Disable keys
-vim.keymap.set({ "n", "v" }, "<Left>", "<Nop>")
-vim.keymap.set({ "n", "v" }, "<Down>", "<Nop>")
-vim.keymap.set({ "n", "v" }, "<Up>", "<Nop>")
-vim.keymap.set({ "n", "v" }, "<Right>", "<Nop>")
 vim.keymap.set({ "n", "v" }, "<Return>", "<Nop>")
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>")
 vim.keymap.set({ "n", "v" }, "<Del>", "<Nop>")
