@@ -48,13 +48,6 @@ return {
         vim.keymap.set("n", "<leader>fk", builtin.keymaps)
         vim.keymap.set("n", "<leader>fm", builtin.man_pages)
 
-        -- Git
-        vim.keymap.set("n", "<leader>gs", builtin.git_status)
-        vim.keymap.set("n", "<leader>gc", builtin.git_commits)
-        vim.keymap.set("n", "<leader>gB", builtin.git_bcommits)
-        vim.keymap.set("n", "<leader>gb", builtin.git_branches)
-        vim.keymap.set("n", "<leader>gS", builtin.git_stash)
-
         telescope.setup({
             defaults = {
                 layout_strategy = "flex",
