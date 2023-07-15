@@ -10,6 +10,15 @@ return {
                     dismiss = "<C-e>",
                 },
             },
+            filetypes = {
+                help = false,
+                gitcommit = false,
+                gitrebase = false,
+                hgcommit = false,
+                svn = false,
+                cvs = false,
+                ["."] = false,
+            },
             copilot_node_command = vim.fn.glob("~/.nvm/versions/node/v18.16.0/bin/node"),
         })
     end,
