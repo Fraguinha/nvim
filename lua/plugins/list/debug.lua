@@ -50,6 +50,27 @@ return {
 
     dap.configurations.java = {
       {
+        name = "Debug (Attach) - Remote 9990",
+        type = "java",
+        request = "attach",
+        hostName = "127.0.0.1",
+        port = 9991,
+      },
+      {
+        name = "Debug (Attach) - Remote 9991",
+        type = "java",
+        request = "attach",
+        hostName = "127.0.0.1",
+        port = 9996,
+      },
+      {
+        name = "Debug (Attach) - Remote 9995",
+        type = "java",
+        request = "attach",
+        hostName = "127.0.0.1",
+        port = 9995,
+      },
+      {
         name = "Debug (Attach) - Remote 9996",
         type = "java",
         request = "attach",

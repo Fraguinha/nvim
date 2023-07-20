@@ -4,11 +4,6 @@ return {
     config = function()
         local catppuccin = require("catppuccin")
         catppuccin.setup {
-            color_overrides = {
-                mocha = {
-                    mantle = "#1e1e2e",
-                },
-            },
             integrations = {
                 native_lsp = {
                     enabled = true,
