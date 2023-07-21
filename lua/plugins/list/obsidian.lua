@@ -40,7 +40,7 @@ return {
       end
     end, { noremap = false, expr = true })
 
-    vim.keymap.set("n", "<leader>nn", ":ObsidianSearch<CR>")
+    vim.keymap.set("n", "<leader>nn", ":ObsidianQuickSwitch<CR>")
     vim.keymap.set("n", "<leader>nc", function()
       local title = vim.fn.input("Note title: ")
       if title ~= "" then
