@@ -41,7 +41,14 @@ return {
     end, { noremap = false, expr = true })
 
     vim.keymap.set("n", "<leader>nn", ":ObsidianSearch<CR>")
-    vim.keymap.set("n", "<leader>nc", ":ObsidianNew<CR>")
+    vim.keymap.set("n", "<leader>nc", function()
+      local title = vim.fn.input("Note title: ")
+      if title ~= "" then
+        vim.cmd("ObsidianNew " .. title)
+      else
+        vim.cmd("ObsidianNew")
+      end
+    end)
     vim.keymap.set("n", "<leader>nt", ":ObsidianToday<CR>")
     vim.keymap.set("n", "<leader>ny", ":ObsidianYesterday<CR>")
   end,
