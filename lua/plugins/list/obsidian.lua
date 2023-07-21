@@ -51,5 +51,6 @@ return {
     end)
     vim.keymap.set("n", "<leader>nt", ":ObsidianToday<CR>")
     vim.keymap.set("n", "<leader>ny", ":ObsidianYesterday<CR>")
+    vim.keymap.set("v", "<leader>nl", ":ObsidianLink<CR>")
   end,
 }
