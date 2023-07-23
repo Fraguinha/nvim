@@ -46,7 +46,14 @@ return {
                     telemetry = { enable = false },
                 },
             },
-            ocamllsp = {},
+            ocamllsp = {
+                extendedHover = {
+                    enable = true,
+                },
+                codelens = {
+                    enable = true,
+                },
+            },
             rust_analyzer = {},
             clangd = {},
             jdtls = {},

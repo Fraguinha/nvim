@@ -8,9 +8,17 @@ return {
 
         vim.api.nvim_set_hl(0, "LeapLabelPrimary", { fg = "red", bg = "none" })
 
-        leap.add_default_mappings()
+        vim.keymap.set("n", "s", function()
+            local current_window = vim.fn.win_getid()
+            leap.leap { target_windows = { current_window } }
+        end)
+        vim.keymap.set("o", "x", function()
+            local current_window = vim.fn.win_getid()
+            leap.leap { target_windows = { current_window } }
+        end)
+
         leap.add_repeat_mappings(';', ',', {
-            relative_directions = true,
+            relative_directions = false,
             modes = { 'n', 'x', 'o' },
         })
     end,
