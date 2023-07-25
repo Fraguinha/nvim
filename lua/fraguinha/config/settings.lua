@@ -3,7 +3,11 @@ vim.g.loaded_netrwPlugin = 1
 
 vim.wo.signcolumn = "yes"
 
-vim.opt.mouse = "a"
+vim.opt.mouse = nil
+vim.opt.mousescroll = "ver:0,hor:0"
+
+vim.opt.list = true
+vim.opt.listchars = "eol:↲"
 
 vim.opt.laststatus = 3
 
