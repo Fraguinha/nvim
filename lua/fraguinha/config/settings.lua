@@ -6,8 +6,15 @@ vim.wo.signcolumn = "yes"
 vim.opt.mouse = nil
 vim.opt.mousescroll = "ver:0,hor:0"
 
+vim.opt.cursorline = true
+
 vim.opt.list = true
-vim.opt.listchars = "eol:↲"
+vim.opt.showbreak = "↪"
+vim.opt.listchars = {
+    tab = "→ ",
+    eol = "↩",
+    extends = "…",
+}
 
 vim.opt.laststatus = 3
 
