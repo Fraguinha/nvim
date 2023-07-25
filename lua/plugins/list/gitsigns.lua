@@ -4,13 +4,7 @@ return {
         local gitsigns = require("gitsigns")
 
         gitsigns.setup {
-            signs = {
-                add = { text = "+" },
-                change = { text = "~" },
-                delete = { text = "_" },
-                topdelete = { text = "‾" },
-                changedelete = { text = "~" },
-            },
+            numhl = true,
             current_line_blame = true,
             on_attach = function(bufnr)
                 local gs = package.loaded.gitsigns
