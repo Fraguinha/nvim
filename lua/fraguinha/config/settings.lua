@@ -7,8 +7,7 @@ vim.opt.mouse = nil
 vim.opt.mousescroll = "ver:0,hor:0"
 
 vim.opt.list = true
-vim.opt.listchars:append("eol:↲")
-vim.opt.listchars:append("tab:→ ")
+vim.opt.listchars = "eol:↲"
 
 vim.opt.laststatus = 3
 
