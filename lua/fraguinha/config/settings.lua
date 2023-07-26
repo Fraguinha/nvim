@@ -16,6 +16,9 @@ vim.opt.listchars = {
     extends = "…",
 }
 
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+
 vim.opt.laststatus = 3
 
 vim.opt.showmode = false

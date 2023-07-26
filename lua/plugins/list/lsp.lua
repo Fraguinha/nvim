@@ -63,6 +63,7 @@ return {
             jsonls = {},
             jedi_language_server = {},
             bashls = {},
+            yamlls = {},
             dockerls = {},
             docker_compose_language_service = {},
         }

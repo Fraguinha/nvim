@@ -40,8 +40,14 @@ return {
       end
     end, { noremap = false, expr = true })
 
-    vim.keymap.set("n", "<leader>nn", ":ObsidianQuickSwitch<CR>")
-    vim.keymap.set("n", "<leader>nc", function()
+    vim.keymap.set("n", "<leader>nn", function()
+      vim.cmd("split")
+      vim.cmd("ObsidianNew")
+      vim.cmd.normal("G")
+      vim.cmd.normal("o")
+      vim.cmd("startinsert")
+    end)
+    vim.keymap.set("n", "<leader>nN", function()
       local title = vim.fn.input("Note title: ")
       if title ~= "" then
         vim.cmd("ObsidianNew " .. title)
@@ -49,6 +55,7 @@ return {
         vim.cmd("ObsidianNew")
       end
     end)
+    vim.keymap.set("n", "<leader>nl", ":ObsidianQuickSwitch<CR>")
     vim.keymap.set("n", "<leader>nt", ":ObsidianToday<CR>")
     vim.keymap.set("n", "<leader>ny", ":ObsidianYesterday<CR>")
     vim.keymap.set("v", "<leader>nl", ":ObsidianLink<CR>")
