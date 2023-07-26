@@ -32,6 +32,13 @@ return {
   config = function(_, opts)
     require("obsidian").setup(opts)
 
+    local function start_note_in_insert(command)
+      vim.cmd(command)
+      vim.cmd.normal("G")
+      vim.cmd.normal("A")
+      vim.cmd("startinsert!")
+    end
+
     vim.keymap.set("n", "gf", function()
       if require("obsidian").util.cursor_on_markdown_link() then
         return ":ObsidianFollowLink<CR>"
@@ -42,22 +49,23 @@ return {
 
     vim.keymap.set("n", "<leader>nn", function()
       vim.cmd("split")
-      vim.cmd("ObsidianNew")
-      vim.cmd.normal("G")
-      vim.cmd.normal("o")
-      vim.cmd("startinsert")
+      start_note_in_insert("ObsidianNew")
     end)
     vim.keymap.set("n", "<leader>nN", function()
       local title = vim.fn.input("Note title: ")
       if title ~= "" then
-        vim.cmd("ObsidianNew " .. title)
+        start_note_in_insert("ObsidianNew " .. title)
       else
-        vim.cmd("ObsidianNew")
+        start_note_in_insert("ObsidianNew")
       end
     end)
+    vim.keymap.set("n", "<leader>nt", function()
+      start_note_in_insert("ObsidianToday")
+    end)
+    vim.keymap.set("n", "<leader>ny", function()
+      start_note_in_insert("ObsidianYesterday")
+    end)
     vim.keymap.set("n", "<leader>nl", ":ObsidianQuickSwitch<CR>")
-    vim.keymap.set("n", "<leader>nt", ":ObsidianToday<CR>")
-    vim.keymap.set("n", "<leader>ny", ":ObsidianYesterday<CR>")
     vim.keymap.set("v", "<leader>nl", ":ObsidianLink<CR>")
   end,
 }
