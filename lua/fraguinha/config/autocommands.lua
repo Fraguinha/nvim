@@ -1,23 +1,23 @@
 -- Auto format
-local format_group = vim.api.nvim_create_augroup("format_group", { clear = true })
+Format_group = vim.api.nvim_create_augroup("format_group", { clear = true })
 
 -- No automatic comments
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
-    group = format_group,
+    group = Format_group,
     pattern = "*",
     command = "set formatoptions-=o"
 })
 
 -- Remove trailing whitespaces
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-    group = format_group,
+    group = Format_group,
     pattern = "*",
     command = [[%s/\s\+$//e]],
 })
 
 -- Remove tailing newlines
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-    group = format_group,
+    group = Format_group,
     pattern = "*",
     command = [[%s/\(\n\)\+\%$//e]],
 })
