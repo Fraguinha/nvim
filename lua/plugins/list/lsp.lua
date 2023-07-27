@@ -61,7 +61,7 @@ return {
             tsserver = {},
             cssls = {},
             jsonls = {},
-            jedi_language_server = {},
+            pyright = {},
             bashls = {},
             yamlls = {},
             dockerls = {},
