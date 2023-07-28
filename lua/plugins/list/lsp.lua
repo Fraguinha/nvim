@@ -61,7 +61,7 @@ return {
             tsserver = {},
             cssls = {},
             jsonls = {},
-            pyright = {},
+            pylsp = {},
             bashls = {},
             yamlls = {},
             dockerls = {},
