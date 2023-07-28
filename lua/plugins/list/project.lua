@@ -4,7 +4,7 @@ return {
   config = function()
     require("project_nvim").setup {
         detection_methods = {  "pattern" },
-        patterns = { ".git", ".project" },
+        patterns = { ".git", ".project.nvim" },
         telescope_default_action = "cd",
     }
   end

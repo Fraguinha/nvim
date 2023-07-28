@@ -47,11 +47,11 @@ return {
       end
     end, { noremap = false, expr = true })
 
-    vim.keymap.set("n", "<leader>nn", function()
+    vim.keymap.set("n", "<leader>nq", function()
       vim.cmd("split")
       start_note_in_insert("ObsidianNew")
     end)
-    vim.keymap.set("n", "<leader>nN", function()
+    vim.keymap.set("n", "<leader>nn", function()
       local title = vim.fn.input("Note title: ")
       if title ~= "" then
         start_note_in_insert("ObsidianNew " .. title)
