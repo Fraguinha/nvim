@@ -18,6 +18,17 @@ return {
             "hrsh7th/cmp-buffer",
         },
         {
+            "petertriho/cmp-git",
+            config = function()
+                require("cmp_git").setup({
+                    filetypes = { "gitcommit", "NeogitCommitMessage" },
+                    gitlab = {
+                        hosts = { "gitlab.feedzai.com", }
+                    }
+                })
+            end
+        },
+        {
             "L3MON4D3/LuaSnip",
             opts = {},
         },
@@ -50,7 +61,7 @@ return {
                     behavior = cmp.ConfirmBehavior.Replace,
                     select = true,
                 },
-                ["<Tab>"] = cmp.mapping(function(fallback)
+                ["<C-n>"] = cmp.mapping(function(fallback)
                     if cmp.visible() then
                         cmp.select_next_item { behavior = cmp.SelectBehavior.Insert }
                     elseif luasnip.expand_or_jumpable() then
@@ -59,7 +70,7 @@ return {
                         fallback()
                     end
                 end, { "i", "s" }),
-                ["<S-Tab>"] = cmp.mapping(function(fallback)
+                ["<C-p>"] = cmp.mapping(function(fallback)
                     if cmp.visible() then
                         cmp.select_prev_item { behavior = cmp.SelectBehavior.Insert }
                     elseif luasnip.jumpable(-1) then
@@ -73,8 +84,21 @@ return {
                 { name = "nvim_lua" },
                 { name = "luasnip" },
                 { name = "nvim_lsp" },
+                { name = "git" },
                 { name = "path" },
                 { name = "buffer",  keyword_length = 5 },
+            },
+            sorting = {
+                comparators = {
+                    cmp.config.compare.offset,
+                    cmp.config.compare.exact,
+                    cmp.config.compare.sort_text,
+                    cmp.config.compare.score,
+                    cmp.config.compare.recently_used,
+                    cmp.config.compare.kind,
+                    cmp.config.compare.length,
+                    cmp.config.compare.order,
+                },
             },
         }
 

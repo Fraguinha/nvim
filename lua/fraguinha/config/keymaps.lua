@@ -11,6 +11,9 @@ vim.keymap.set("n", "<leader>c", '"_c')
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
+vim.keymap.set("i", "<Tab>", "<C-t>")
+vim.keymap.set("i", "<S-Tab>", "<C-d>")
+
 -- Center screen after movement
 vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
