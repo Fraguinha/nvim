@@ -32,10 +32,12 @@ return {
   config = function(_, opts)
     require("obsidian").setup(opts)
 
-    local function start_note_in_insert(command)
+    local function start_note_in_insert(command, newlines)
       vim.cmd(command)
       vim.cmd.normal("G")
-      vim.cmd.normal("A")
+      for _ = 1, newlines do
+        vim.cmd.normal("o")
+      end
       vim.cmd("startinsert!")
     end
 
@@ -49,21 +51,21 @@ return {
 
     vim.keymap.set("n", "<leader>nq", function()
       vim.cmd("split")
-      start_note_in_insert("ObsidianNew")
+      start_note_in_insert("ObsidianNew", 1)
     end)
     vim.keymap.set("n", "<leader>nn", function()
       local title = vim.fn.input("Note title: ")
       if title ~= "" then
-        start_note_in_insert("ObsidianNew " .. title)
+        start_note_in_insert("ObsidianNew " .. title, 2)
       else
-        start_note_in_insert("ObsidianNew")
+        start_note_in_insert("ObsidianNew", 1)
       end
     end)
     vim.keymap.set("n", "<leader>nt", function()
-      start_note_in_insert("ObsidianToday")
+      start_note_in_insert("ObsidianToday", 1)
     end)
     vim.keymap.set("n", "<leader>ny", function()
-      start_note_in_insert("ObsidianYesterday")
+      start_note_in_insert("ObsidianYesterday", 1)
     end)
     vim.keymap.set("n", "<leader>nl", ":ObsidianQuickSwitch<CR>")
     vim.keymap.set("v", "<leader>nl", ":ObsidianLink<CR>")
