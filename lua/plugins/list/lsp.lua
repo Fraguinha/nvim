@@ -66,6 +66,7 @@ return {
             yamlls = {},
             dockerls = {},
             docker_compose_language_service = {},
+            texlab = {},
         }
 
         local mason_lspconfig = require("mason-lspconfig")
