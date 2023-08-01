@@ -6,10 +6,9 @@ return {
         todo.setup({
             signs = false,
             keywords = {
-                FIX  = { icon = " ", color = "error", alt = { "FIXME", "BUG" } },
-                TODO = { icon = " ", color = "info" },
-                HACK = { icon = " ", color = "warning" },
-                WARN = { icon = " ", color = "warning", alt = { "WARNING" } },
+                FIX  = { color = "error", alt = { "Fix", "fix", "BUG", "Bug", "bug" } },
+                TODO = { color = "info", alt = { "Todo", "todo" } },
+                HACK = { color = "warning", alt = { "Hack", "hack" } },
             },
             highlight = {
                 before = "",
