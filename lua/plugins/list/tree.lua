@@ -33,8 +33,8 @@ return {
                 vim.keymap.set('n', '<CR>', node_open_edit, opts)
                 vim.keymap.set('n', 'q', api.tree.close, opts)
                 vim.keymap.set('n', 'R', api.tree.reload, opts)
-                vim.keymap.set('n' , 'i', api.tree.toggle_gitignore_filter, opts)
-                vim.keymap.set('n' , '.', api.tree.toggle_hidden_filter, opts)
+                vim.keymap.set('n', 'i', api.tree.toggle_gitignore_filter, opts)
+                vim.keymap.set('n', '.', api.tree.toggle_hidden_filter, opts)
 
                 vim.keymap.set('n', 'a', api.fs.create, opts)
                 vim.keymap.set('n', 'r', api.fs.rename, opts)
