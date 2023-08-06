@@ -2,7 +2,6 @@ return {
     "NeogitOrg/neogit",
     dependencies = {
         "nvim-lua/plenary.nvim",
-        "sindrets/diffview.nvim"
     },
     config = function()
         local neogit = require("neogit")
@@ -12,10 +11,7 @@ return {
             disable_hint = true,
             disable_commit_confirmation = true,
             disable_builtin_notifications = true,
-            kind = "replace",
-            integrations = {
-                diffview = true
-            },
+            kind = "split",
         })
 
         vim.keymap.set("n", "<C-g>", function()
