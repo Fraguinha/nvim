@@ -18,6 +18,17 @@ return {
             },
         })
 
-        vim.keymap.set("n", "<C-g>", ":Neogit<CR>")
-    end
+        vim.keymap.set("n", "<C-g>", function()
+            if vim.bo.ft == "NvimTree" then
+                vim.cmd("NvimTreeClose")
+                vim.cmd("Neogit")
+            else
+                if vim.bo.ft == "NeogitStatus" then
+                    vim.cmd.normal("q")
+                else
+                    vim.cmd("Neogit")
+                end
+            end
+        end)
+    end,
 }
