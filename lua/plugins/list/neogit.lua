@@ -11,18 +11,17 @@ return {
             disable_hint = true,
             disable_commit_confirmation = true,
             disable_builtin_notifications = true,
-            kind = "split",
         })
 
         vim.keymap.set("n", "<C-g>", function()
             if vim.bo.ft == "NvimTree" then
                 vim.cmd("NvimTreeClose")
-                vim.cmd("Neogit")
+                vim.cmd("Neogit kind=replace")
             else
                 if vim.bo.ft == "NeogitStatus" then
                     vim.cmd.normal("q")
                 else
-                    vim.cmd("Neogit")
+                    vim.cmd("Neogit kind=replace")
                 end
             end
         end)
