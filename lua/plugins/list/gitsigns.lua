@@ -22,8 +22,9 @@ return {
                 end, { buffer = bufnr })
 
                 vim.keymap.set("n", "<leader>hh", gs.preview_hunk)
-                vim.keymap.set("n", "<leader>hb", function() gs.blame_line { full = true } end)
                 vim.keymap.set("n", "<leader>hd", gs.toggle_deleted)
+                vim.keymap.set("n", "<leader>hr", gs.reset_hunk)
+                vim.keymap.set("n", "<leader>hb", function() gs.blame_line { full = true } end)
 
                 -- Text object
                 vim.keymap.set({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")

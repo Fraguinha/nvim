@@ -7,7 +7,7 @@ return {
             partial_update = true,
             formatter_by_ft = {
                 c = formatters.lsp,
-                java = formatters.lsp,
+                -- java = formatters.lsp,
                 ocaml = formatters.lsp,
                 rust = formatters.lsp,
                 python = formatters.lsp,
