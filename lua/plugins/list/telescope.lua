@@ -13,13 +13,9 @@ return {
         -- Fuzzy find files
         vim.keymap.set("n", "<leader><leader>",
             function()
-                local ok, _ = pcall(function() builtin.git_files { path_display = { "truncate" } } end)
-                if not ok then
-                    builtin.find_files {
-                        path_display = { "truncate" },
-                        file_ignore_patterns = { "node%_modules/.*", "target/.*", "_build/.*" },
-                    }
-                end
+                builtin.find_files {
+                    path_display = { "truncate" },
+                }
             end)
 
         -- Fuzzy find buffers
@@ -41,6 +37,10 @@ return {
             vim.cmd [[:silent %bd!]]
             telescope.extensions.projects.projects {}
         end)
+
+        -- Git
+        vim.keymap.set("n", "<leader>gd", builtin.git_bcommits)
+        vim.keymap.set("v", "<leader>gd", builtin.git_bcommits_range)
 
         -- Help
         vim.keymap.set("n", "<leader>fd", builtin.diagnostics)
