@@ -11,10 +11,8 @@ return {
 
     require("mason-nvim-dap").setup {
       automatic_setup = true,
-
       handlers = {},
-
-      ensure_installed = { "codelldb", "java-debug-adapter", "java-test", "js-debug-adapter", "bash-debug-adapter" },
+      ensure_installed = { "codelldb", "java-debug-adapter", "java-test", "js-debug-adapter" },
     }
 
     vim.keymap.set("n", "<F1>", dap.step_into)
