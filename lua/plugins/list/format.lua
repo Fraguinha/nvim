@@ -4,10 +4,12 @@ return {
         local format_on_save = require("format-on-save")
         local formatters = require("format-on-save.formatters")
         format_on_save.setup({
-            partial_update = true,
+            experiments = {
+                partial_update = 'diff',
+            },
             formatter_by_ft = {
                 c = formatters.lsp,
-                -- java = formatters.lsp,
+                java = formatters.lsp,
                 ocaml = formatters.lsp,
                 rust = formatters.lsp,
                 python = formatters.lsp,

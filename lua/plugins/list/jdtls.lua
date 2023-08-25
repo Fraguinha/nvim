@@ -68,7 +68,7 @@ return {
             path.runtimes = {
                 {
                     name = "JavaSE-1.8",
-                    path = vim.fn.glob("~/.sdkman/candidates/java/current/"),
+                    path = vim.fn.glob("~/.sdkman/candidates/java/8.*-amzn"),
                 },
             }
 
@@ -163,27 +163,36 @@ return {
                     jdt = {
                         ls = {
                             java = {
-                                home = vim.fn.glob("~/.sdkman/candidates/java/current/"),
+                                home = vim.fn.glob("~/.sdkman/candidates/java/17.*-amzn"),
                             },
                             vmargs =
                             "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx1G -Xms100m"
                         }
                     },
-                    eclipse = {
-                        downloadSources = true,
-                    },
                     configuration = {
                         updateBuildConfiguration = "interactive",
                         runtimes = path.runtimes,
                     },
+                    eclipse = {
+                        downloadSources = true,
+                    },
                     maven = {
                         downloadSources = true,
+                    },
+                    signatureHelp = {
+                        enabled = true,
                     },
                     implementationsCodeLens = {
                         enabled = true,
                     },
                     referencesCodeLens = {
                         enabled = true,
+                    },
+                    references = {
+                        includeDecompiledSources = true,
+                    },
+                    contentProvider = {
+                        preferred = "fernflower",
                     },
                     inlayHints = {
                         parameterNames = {
@@ -192,30 +201,23 @@ return {
                     },
                     format = {
                         enabled = true,
-                    }
-                },
-                signatureHelp = {
-                    enabled = true,
-                },
-                completion = {
-                    favoriteStaticMembers = {
                     },
-                },
-                contentProvider = {
-                    preferred = "fernflower",
-                },
-                extendedClientCapabilities = jdtls.extendedClientCapabilities,
-                sources = {
-                    organizeImports = {
-                        starThreshold = 9999,
-                        staticStarThreshold = 9999,
-                    }
-                },
-                codeGeneration = {
-                    toString = {
-                        template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}",
+                    saveActions = {
+                        organizeImports = true,
                     },
-                    useBlocks = true,
+                    sources = {
+                        organizeImports = {
+                            starThreshold = 9999,
+                            staticStarThreshold = 9999,
+                        }
+                    },
+                    codeGeneration = {
+                        toString = {
+                            template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}",
+                        },
+                        useBlocks = true,
+                    },
+                    extendedClientCapabilities = jdtls.extendedClientCapabilities,
                 },
             }
 

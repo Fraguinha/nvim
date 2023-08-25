@@ -2,9 +2,9 @@ On_attach = function(_, bufnr)
     local telescope = require("telescope.builtin")
 
     vim.keymap.set("n", "gd", telescope.lsp_definitions, { buffer = bufnr })
-    vim.keymap.set("n", "gD", telescope.lsp_type_definitions, { buffer = bufnr })
-    vim.keymap.set("n", "gR", telescope.lsp_references, { buffer = bufnr })
-    vim.keymap.set("n", "gI", telescope.lsp_implementations, { buffer = bufnr })
+    vim.keymap.set("n", "gr", telescope.lsp_references, { buffer = bufnr })
+    vim.keymap.set("n", "gi", telescope.lsp_implementations, { buffer = bufnr })
+    vim.keymap.set("n", "go", telescope.lsp_type_definitions, { buffer = bufnr })
 
     vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = bufnr })
     vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, { buffer = bufnr })
@@ -12,9 +12,8 @@ On_attach = function(_, bufnr)
     vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { buffer = bufnr })
     vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { buffer = bufnr })
 
-    vim.keymap.set("n", "<leader>ld", vim.diagnostic.open_float, { buffer = bufnr })
     vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, { buffer = bufnr })
-    vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, { buffer = bufnr })
+    vim.keymap.set("n", "<leader>lca", vim.lsp.buf.code_action, { buffer = bufnr })
     vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, { buffer = bufnr })
 end
 
@@ -46,6 +45,8 @@ return {
                     telemetry = { enable = false },
                 },
             },
+            clangd = {},
+            jdtls = {},
             ocamllsp = {
                 extendedHover = {
                     enable = true,
@@ -55,15 +56,13 @@ return {
                 },
             },
             rust_analyzer = {},
-            clangd = {},
-            jdtls = {},
-            lemminx = {},
+            pylsp = {},
             tsserver = {},
             cssls = {},
+            lemminx = {},
             jsonls = {},
-            pylsp = {},
-            bashls = {},
             yamlls = {},
+            bashls = {},
             dockerls = {},
             docker_compose_language_service = {},
             texlab = {},
