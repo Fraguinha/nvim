@@ -3,6 +3,9 @@ vim.g.loaded_netrwPlugin = 1
 
 vim.wo.signcolumn = "yes"
 
+vim.opt.updatetime = 250
+vim.opt.timeoutlen = 300
+
 vim.opt.mouse = nil
 vim.opt.mousescroll = "ver:0,hor:0"
 
