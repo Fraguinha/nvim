@@ -10,7 +10,7 @@ return {
             api.tree.toggle()
         end)
 
-        local function node_open_edit()
+        local function custom_open_edit()
             api.node.open.edit()
             if vim.bo.ft ~= "NvimTree" then
                 api.tree.close()
@@ -18,7 +18,7 @@ return {
         end
 
         require("nvim-tree").setup({
-            view = { width = 60, },
+            view = { width = 80, },
             filters = { custom = { "^.git$" }, },
             sync_root_with_cwd = true,
             respect_buf_cwd = true,
@@ -29,8 +29,8 @@ return {
             on_attach = function(bufnr)
                 local opts = { buffer = bufnr, noremap = true, silent = true, nowait = true }
 
-                vim.keymap.set("n", "h", api.tree.collapse_all, opts)
-                vim.keymap.set("n", "l", node_open_edit, opts)
+                vim.keymap.set("n", "h", api.node.navigate.parent_close, opts)
+                vim.keymap.set("n", "l", custom_open_edit, opts)
 
                 vim.keymap.set('n', 'i', api.tree.toggle_gitignore_filter, opts)
                 vim.keymap.set('n', '.', api.tree.toggle_hidden_filter, opts)
