@@ -14,15 +14,11 @@ return {
         })
 
         vim.keymap.set("n", "<C-g>", function()
-            if vim.bo.ft == "NvimTree" then
-                vim.cmd("NvimTreeClose")
-                vim.cmd("Neogit kind=replace")
+            vim.cmd("NvimTreeClose")
+            if vim.bo.ft == "NeogitStatus" then
+                vim.cmd.normal("q")
             else
-                if vim.bo.ft == "NeogitStatus" then
-                    vim.cmd.normal("q")
-                else
-                    vim.cmd("Neogit kind=replace")
-                end
+                vim.cmd("Neogit kind=replace")
             end
         end)
     end,
