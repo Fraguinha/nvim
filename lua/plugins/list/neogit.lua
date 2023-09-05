@@ -15,6 +15,7 @@ return {
 
         vim.keymap.set("n", "<C-g>", function()
             vim.cmd("NvimTreeClose")
+            vim.cmd("DBUIClose")
             if vim.bo.ft == "NeogitStatus" then
                 vim.cmd.normal("q")
             else
