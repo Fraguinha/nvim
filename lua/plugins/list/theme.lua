@@ -4,6 +4,8 @@ return {
     config = function()
         local catppuccin = require("catppuccin")
         catppuccin.setup {
+            flavour = "mocha",
+            show_end_of_buffer = true,
             integrations = {
                 native_lsp = {
                     enabled = true,
@@ -39,6 +41,6 @@ return {
                 cmp = true,
             },
         }
-        vim.cmd.colorscheme "catppuccin-mocha"
+        vim.cmd.colorscheme "catppuccin"
     end,
 }
