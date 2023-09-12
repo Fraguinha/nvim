@@ -5,7 +5,7 @@ return {
         "kristijanhusak/vim-dadbod-completion",
     },
     config = function()
-        vim.keymap.set("n", "<C-h>", function()
+        vim.keymap.set("n", "<C-t>", function()
             vim.cmd("NvimTreeClose")
             if vim.bo.ft == "NeogitStatus" then
                 vim.cmd.normal("q")
