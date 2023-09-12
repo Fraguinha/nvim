@@ -15,87 +15,49 @@ return {
       ensure_installed = { "codelldb", "java-debug-adapter", "java-test", "js-debug-adapter" },
     }
 
+    local configure_and_attach = function()
+      local filetype = vim.fn.input("Debug type [" .. vim.bo.filetype .. "]: ")
+      local host_name = vim.fn.input("Debug hostname [127.0.0.1]: ")
+      local port = vim.fn.input("Debug port: ")
+
+      if filetype == "" then
+        filetype = vim.bo.filetype
+      end
+
+      if host_name == "" then
+        host_name = "127.0.0.1"
+      end
+
+      local config = {
+        name = "Debug (Attach) - Remote " .. port,
+        type = filetype,
+        request = "attach",
+        hostName = host_name,
+        port = port,
+      }
+
+      if not dap.configurations[filetype] then
+        dap.configurations[filetype] = {}
+        table.insert(dap.configurations[filetype], config)
+      end
+
+      dap.run(config)
+    end
+
     vim.keymap.set("n", "<F1>", dap.step_into)
     vim.keymap.set("n", "<F2>", dap.step_over)
     vim.keymap.set("n", "<F3>", dap.step_out)
-    vim.keymap.set("n", "<F5>", dap.continue)
+    vim.keymap.set("n", "<F5>", configure_and_attach)
     vim.keymap.set("n", "<F7>", dapui.toggle)
     vim.keymap.set("n", "<leader>b", dap.toggle_breakpoint)
     vim.keymap.set("n", "<leader>B", function()
       dap.set_breakpoint(vim.fn.input "Breakpoint condition: ")
     end)
 
-    dapui.setup {
-      icons = { expanded = "▾", collapsed = "▸", current_frame = "*" },
-      controls = {
-        icons = {
-          pause = "⏸",
-          play = "▶",
-          step_into = "⏎",
-          step_over = "⏭",
-          step_out = "⏮",
-          step_back = "b",
-          run_last = "▶▶",
-          terminate = "⏹",
-          disconnect = "⏏",
-        },
-      },
-    }
+    dapui.setup()
 
     dap.listeners.after.event_initialized["dapui_config"] = dapui.open
     dap.listeners.before.event_terminated["dapui_config"] = dapui.close
     dap.listeners.before.event_exited["dapui_config"] = dapui.close
-
-    dap.configurations.java = {
-      {
-        name = "Debug (Attach) - Remote 9990",
-        type = "java",
-        request = "attach",
-        hostName = "127.0.0.1",
-        port = 9991,
-      },
-      {
-        name = "Debug (Attach) - Remote 9991",
-        type = "java",
-        request = "attach",
-        hostName = "127.0.0.1",
-        port = 9996,
-      },
-      {
-        name = "Debug (Attach) - Remote 9995",
-        type = "java",
-        request = "attach",
-        hostName = "127.0.0.1",
-        port = 9995,
-      },
-      {
-        name = "Debug (Attach) - Remote 9996",
-        type = "java",
-        request = "attach",
-        hostName = "127.0.0.1",
-        port = 9996,
-      },
-      {
-        name = "Debug (Attach) - Remote 9997",
-        type = "java",
-        request = "attach",
-        hostName = "127.0.0.1",
-        port = 9997,
-      },
-      {
-        name = "Debug (Attach) - Remote 9998",
-        type = "java",
-        request = "attach",
-        hostName = "127.0.0.1",
-        port = 9998,
-      },
-      {
-        name = "Debug (Attach) - Remote 9999",
-        type = "java",
-        request = "attach",
-        hostName = "127.0.0.1",
-        port = 9999,
-      },
-    }
   end,
 }

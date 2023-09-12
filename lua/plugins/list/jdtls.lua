@@ -70,6 +70,10 @@ return {
                     name = "JavaSE-1.8",
                     path = vim.fn.glob("~/.sdkman/candidates/java/8.*-amzn"),
                 },
+                {
+                    name = "JavaSE-17",
+                    path = vim.fn.glob("~/.sdkman/candidates/java/17.*-amzn"),
+                },
             }
 
             cache_vars.paths = path
