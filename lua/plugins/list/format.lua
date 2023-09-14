@@ -9,7 +9,7 @@ return {
             },
             formatter_by_ft = {
                 c = formatters.lsp,
-                java = formatters.lsp,
+                -- java = formatters.lsp,
                 ocaml = formatters.lsp,
                 rust = formatters.lsp,
                 python = formatters.lsp,
@@ -20,7 +20,7 @@ return {
                 html = formatters.lsp,
                 css = formatters.lsp,
                 json = formatters.lsp,
-                xml = formatters.lsp,
+                -- xml = formatters.lsp,
                 yaml = formatters.lsp,
                 lua = formatters.lsp,
                 sh = formatters.shfmt,
