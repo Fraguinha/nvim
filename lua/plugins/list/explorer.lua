@@ -33,6 +33,8 @@ return {
             on_attach = function(bufnr)
                 local opts = { buffer = bufnr, noremap = true, silent = true, nowait = true }
 
+                vim.keymap.set("n", "<CR>", custom_open_edit, opts)
+
                 vim.keymap.set("n", "h", api.node.navigate.parent_close, opts)
                 vim.keymap.set("n", "l", custom_open_edit, opts)
 
