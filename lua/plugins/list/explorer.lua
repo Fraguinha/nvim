@@ -7,7 +7,6 @@ return {
         local api = require("nvim-tree.api")
 
         vim.keymap.set("n", "<Tab><Tab>", function()
-            vim.cmd("DBUIClose")
             if vim.bo.ft == "NeogitStatus" then
                 vim.cmd.normal("q")
             end
