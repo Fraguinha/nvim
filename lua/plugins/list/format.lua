@@ -1,30 +1,33 @@
 return {
-    "elentok/format-on-save.nvim",
-    config = function()
-        local format_on_save = require("format-on-save")
-        local formatters = require("format-on-save.formatters")
-        format_on_save.setup({
-            experiments = {
-                partial_update = 'diff',
-            },
-            formatter_by_ft = {
-                c = formatters.lsp,
-                -- java = formatters.lsp,
-                ocaml = formatters.lsp,
-                rust = formatters.lsp,
-                python = formatters.lsp,
-                javascript = formatters.lsp,
-                typescript = formatters.lsp,
-                javascriptreact = formatters.lsp,
-                typescriptreact = formatters.lsp,
-                -- xml = formatters.lsp,
-                html = formatters.lsp,
-                css = formatters.lsp,
-                json = formatters.lsp,
-                yaml = formatters.lsp,
-                lua = formatters.lsp,
-                sh = formatters.shfmt,
-            }
-        })
-    end,
+	"stevearc/conform.nvim",
+	config = function()
+		local conform = require("conform")
+		conform.setup({
+			formatters_by_ft = {
+				c = { "clang-format" },
+				-- java = { "google-java-format" },
+				ocaml = { "ocamlformat" },
+				rust = { "rustfmt" },
+				python = { "isort", "black" },
+				javascript = { "prettierd" },
+				typescript = { "prettierd" },
+				javascriptreact = { "prettierd" },
+				typescriptreact = { "prettierd" },
+				-- xml = { "prettierd" },
+				html = { "prettierd" },
+				css = { "prettierd" },
+				json = { "prettierd" },
+				yaml = { "prettierd" },
+				lua = { "stylua" },
+				sh = { "shfmt" },
+			},
+		})
+
+		vim.api.nvim_create_autocmd("BufWritePre", {
+			pattern = "*",
+			callback = function(args)
+				conform.format({ bufnr = args.buf })
+			end,
+		})
+	end,
 }

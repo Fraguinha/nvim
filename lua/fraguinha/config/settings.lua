@@ -13,9 +13,9 @@ vim.opt.cursorline = true
 vim.opt.list = true
 vim.opt.showbreak = "↪"
 vim.opt.listchars = {
-    tab = "→ ",
-    eol = "↩",
-    extends = "…",
+	tab = "→ ",
+	eol = "↩",
+	extends = "…",
 }
 
 vim.opt.splitright = true
