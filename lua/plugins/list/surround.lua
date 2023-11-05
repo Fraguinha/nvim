@@ -3,14 +3,14 @@ return {
 	config = function()
 		require("nvim-surround").setup({
 			keymaps = {
-				normal = "Sa",
-				normal_cur = "SS",
-				normal_line = "gS",
+				normal = "gsa",
+				normal_cur = "gss",
+				normal_line = "gsl",
 				normal_cur_line = "gSS",
-				visual = "S",
-				visual_line = "S",
-				delete = "Sd",
-				change = "Sc",
+				change = "gsc",
+				delete = "gsd",
+				visual = "gsa",
+				visual_line = "gsl",
 			},
 		})
 	end,

@@ -40,10 +40,6 @@ return {
 			telescope.extensions.projects.projects({})
 		end)
 
-		-- Git
-		vim.keymap.set("n", "<leader>gd", builtin.git_bcommits)
-		vim.keymap.set("v", "<leader>gd", builtin.git_bcommits_range)
-
 		-- Help
 		vim.keymap.set("n", "<leader>fd", builtin.diagnostics)
 		vim.keymap.set("n", "<leader>fh", builtin.help_tags)
