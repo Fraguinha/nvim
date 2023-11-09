@@ -13,9 +13,13 @@ vim.opt.cursorline = true
 vim.opt.list = true
 vim.opt.showbreak = "↪"
 vim.opt.listchars = {
-	tab = "→ ",
+	tab = "→·",
 	eol = "↩",
-	extends = "…",
+	nbsp = "␣",
+	space = "·",
+	trail = "␣",
+	extends = "»",
+	precedes = "«",
 }
 
 vim.opt.splitright = true
