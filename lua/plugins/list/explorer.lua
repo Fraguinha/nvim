@@ -21,6 +21,7 @@ return {
 		end
 
 		require("nvim-tree").setup({
+			hijack_cursor = true,
 			view = { width = 80 },
 			filters = { custom = { "^.git$" } },
 			sync_root_with_cwd = true,
