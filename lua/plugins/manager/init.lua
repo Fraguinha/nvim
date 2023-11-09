@@ -19,4 +19,8 @@ if not ok then
 end
 
 -- Plugins configuration
-lazy.setup("plugins.list")
+lazy.setup("plugins.list", {
+	change_detection = {
+		notify = false,
+	},
+})
