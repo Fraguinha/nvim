@@ -8,11 +8,16 @@ return {
 
 		vim.api.nvim_set_hl(0, "LeapLabelPrimary", { fg = "red", bg = "none" })
 
-		leap.add_default_mappings()
+		vim.keymap.set({ "x", "o" }, "x", function()
+			leap.leap({ offset = -1, inclusive_op = true })
+		end)
 
-		vim.keymap.set("n", "s", function()
-			local current_window = vim.fn.win_getid()
-			require("leap").leap({ target_windows = { current_window } })
+		vim.keymap.set({ "x", "o" }, "X", function()
+			leap.leap({ offset = 2, backward = true })
+		end)
+
+		vim.keymap.set({ "n", "x", "o" }, "s", function()
+			leap.leap({ target_windows = { vim.fn.win_getid() } })
 		end)
 	end,
 }
