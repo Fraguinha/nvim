@@ -34,11 +34,11 @@ return {
 	"williamboman/mason-lspconfig.nvim",
 	dependencies = {
 		{
-			"williamboman/mason.nvim",
-			opts = {},
+			"neovim/nvim-lspconfig",
 		},
 		{
-			"neovim/nvim-lspconfig",
+			"williamboman/mason.nvim",
+			opts = {},
 		},
 		{
 			"j-hui/fidget.nvim",

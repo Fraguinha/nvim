@@ -36,7 +36,7 @@ return {
 
 		-- Projects
 		vim.keymap.set("n", "<C-p>", function()
-			vim.cmd([[:silent %bd!]])
+			vim.cmd(":silent %bd!")
 			telescope.extensions.projects.projects({})
 		end)
 
