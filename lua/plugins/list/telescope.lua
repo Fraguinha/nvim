@@ -17,6 +17,12 @@ return {
 			})
 		end)
 
+		-- Projects
+		vim.keymap.set("n", "<C-CR>", function()
+			vim.cmd(":silent %bd!")
+			telescope.extensions.projects.projects({})
+		end)
+
 		-- Fuzzy find buffers
 		vim.keymap.set("n", "<C-b>", function()
 			builtin.buffers({
@@ -32,12 +38,6 @@ return {
 		end)
 		vim.keymap.set("v", "<C-f>", function()
 			builtin.grep_string({ path_display = { "truncate" } })
-		end)
-
-		-- Projects
-		vim.keymap.set("n", "<C-p>", function()
-			vim.cmd(":silent %bd!")
-			telescope.extensions.projects.projects({})
 		end)
 
 		-- Help

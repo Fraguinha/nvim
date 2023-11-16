@@ -18,7 +18,7 @@ return {
 			},
 		})
 
-		vim.keymap.set("n", "<C-n>", function()
+		vim.keymap.set("n", "<C-Tab>", function()
 			vim.cmd("NvimTreeClose")
 			if vim.bo.ft == "norg" and vim.fn.expand("%:t") == "index.norg" then
 				vim.cmd("Neorg return")

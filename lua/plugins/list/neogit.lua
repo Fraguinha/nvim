@@ -13,6 +13,7 @@ return {
 			disable_hint = true,
 			disable_commit_confirmation = true,
 			disable_builtin_notifications = true,
+			kind = "replace",
 		})
 
 		vim.keymap.set("n", "<C-g>", function()
@@ -21,7 +22,7 @@ return {
 			if vim.bo.ft == "NeogitStatus" then
 				vim.cmd.normal("q")
 			else
-				vim.cmd("Neogit kind=replace")
+				vim.cmd("Neogit")
 			end
 		end)
 	end,
