@@ -13,10 +13,9 @@ return {
 				"mtime",
 			},
 			keymaps = {
-				["<CR>"] = "actions.select",
-				["<BS>"] = "actions.close",
 				["-"] = "actions.parent",
-				["="] = "actions.select",
+				["<BS>"] = "actions.close",
+				["<CR>"] = "actions.select",
 				["gs"] = "actions.change_sort",
 				["gx"] = "actions.open_external",
 				["g."] = "actions.toggle_hidden",
