@@ -6,6 +6,7 @@ return {
 		gitsigns.setup({
 			numhl = true,
 			current_line_blame = true,
+			_signs_staged_enable = true,
 			on_attach = function(bufnr)
 				local gs = package.loaded.gitsigns
 
@@ -32,7 +33,7 @@ return {
 				vim.keymap.set("n", "<leader>gs", gs.stage_hunk)
 				vim.keymap.set("n", "<leader>gu", gs.undo_stage_hunk)
 				vim.keymap.set("n", "<leader>gr", gs.reset_hunk)
-				vim.keymap.set("n", "<leader>gg", gs.preview_hunk)
+				vim.keymap.set("n", "<leader>gg", gs.preview_hunk_inline)
 				vim.keymap.set("n", "<leader>gd", gs.toggle_deleted)
 				vim.keymap.set("n", "<leader>gb", function()
 					gs.blame_line({ full = true })
