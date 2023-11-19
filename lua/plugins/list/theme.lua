@@ -1,6 +1,7 @@
 return {
 	"catppuccin/nvim",
 	name = "catppuccin",
+	priority = 1000,
 	config = function()
 		local catppuccin = require("catppuccin")
 		catppuccin.setup({
@@ -34,9 +35,11 @@ return {
 					style = "classic",
 				},
 				treesitter = true,
+				treesitter_context = true,
 				nvimtree = true,
 				gitsigns = true,
 				neogit = true,
+				fidget = true,
 				mason = true,
 				cmp = true,
 			},

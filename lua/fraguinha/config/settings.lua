@@ -21,6 +21,9 @@ vim.opt.listchars = {
 	extends = "»",
 	precedes = "«",
 }
+vim.opt.fillchars = {
+	diff = "╱",
+}
 
 vim.opt.splitright = true
 vim.opt.splitbelow = true
