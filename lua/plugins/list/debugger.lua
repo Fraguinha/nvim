@@ -2,12 +2,14 @@ return {
 	"mfussenegger/nvim-dap",
 	dependencies = {
 		"rcarriga/nvim-dap-ui",
+		"theHamsta/nvim-dap-virtual-text",
 		"williamboman/mason.nvim",
 		"jay-babu/mason-nvim-dap.nvim",
 	},
 	config = function()
 		local dap = require("dap")
 		local dapui = require("dapui")
+		local dap_virtual_text = require("nvim-dap-virtual-text")
 
 		require("mason-nvim-dap").setup({
 			automatic_setup = true,
@@ -80,6 +82,7 @@ return {
 		end)
 
 		dapui.setup()
+		dap_virtual_text.setup()
 
 		dap.listeners.after.event_initialized["dapui_config"] = dapui.open
 		dap.listeners.before.event_terminated["dapui_config"] = dapui.close

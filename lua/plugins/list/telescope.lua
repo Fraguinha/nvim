@@ -3,16 +3,18 @@ return {
 	dependencies = {
 		{ "nvim-lua/plenary.nvim" },
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+		{ "nvim-telescope/telescope-frecency.nvim" },
 		{ "nvim-telescope/telescope-ui-select.nvim" },
-		{ "nvim-telescope/telescope-file-browser.nvim" },
+		{ "nvim-telescope/telescope-dap.nvim" },
 	},
 	config = function()
 		local telescope = require("telescope")
 		local builtin = require("telescope.builtin")
+		local frecency = telescope.extensions.frecency
 
 		-- Fuzzy find files
 		vim.keymap.set("n", "<leader><leader>", function()
-			builtin.find_files({
+			frecency.frecency({
 				path_display = { "truncate" },
 			})
 		end)
@@ -66,16 +68,19 @@ return {
 				},
 			},
 			extensions = {
+				frecency = {
+					default_workspace = "CWD",
+					ignore_patterns = { "*.git/*" },
+				},
 				ui_select = {
 					require("telescope.themes").get_dropdown({}),
 				},
-				file_browser = {},
 			},
 		})
 
 		telescope.load_extension("fzf")
+		telescope.load_extension("frecency")
 		telescope.load_extension("ui-select")
-		telescope.load_extension("file_browser")
-		telescope.load_extension("projects")
+		telescope.load_extension("dap")
 	end,
 }

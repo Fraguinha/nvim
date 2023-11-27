@@ -1,13 +1,15 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-vim.keymap.set("n", "Y", "y$")
-
+-- Copy to/Paste from clipboard
 vim.keymap.set("n", "<leader>y", '"+y')
 vim.keymap.set("n", "<leader>p", '"+p')
-vim.keymap.set("n", "<leader>d", '"_d')
-vim.keymap.set("n", "<leader>c", '"_c')
 
+-- Change/Delete without yanking
+vim.keymap.set("n", "<leader>c", '"_c')
+vim.keymap.set("n", "<leader>d", '"_d')
+
+-- Move lines respecting indentation
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
