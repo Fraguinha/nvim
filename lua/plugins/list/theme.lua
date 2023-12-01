@@ -19,7 +19,6 @@ return {
 	config = function()
 		local catppuccin = require("catppuccin")
 		catppuccin.setup({
-			flavour = "latte",
 			show_end_of_buffer = true,
 			integrations = {
 				native_lsp = {
