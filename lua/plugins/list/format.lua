@@ -16,7 +16,7 @@ return {
 				html = { "prettierd" },
 				css = { "prettierd" },
 				json = { "prettierd" },
-				yaml = { "yamlfix", "yamlfmt" },
+				-- yaml = { "yamlfix", "yamlfmt" },
 				lua = { "stylua" },
 				sh = { "shfmt" },
 			},
