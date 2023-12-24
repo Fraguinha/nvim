@@ -1,29 +1,28 @@
 return {
-	"nvim-neorg/neorg",
-	build = ":Neorg sync-parsers",
-	dependencies = { "nvim-lua/plenary.nvim" },
+	"jakewvincent/mkdnflow.nvim",
 	config = function()
-		require("neorg").setup({
-			load = {
-				["core.defaults"] = {},
-				["core.concealer"] = {},
-				["core.dirman"] = {
-					config = {
-						workspaces = {
-							notes = "~/notes",
-						},
-						default_workspace = "notes",
-					},
-				},
+		require("mkdnflow").setup({
+			links = {
+				transform_explicit = function(text)
+					text = text:gsub(" ", "-")
+					text = text:lower()
+					return text
+				end,
 			},
 		})
 
+		local project = require("project_nvim.project")
 		vim.keymap.set("n", "<C-Tab>", function()
 			vim.cmd("NvimTreeClose")
-			if vim.bo.ft == "norg" and vim.fn.expand("%:t") == "index.norg" then
-				vim.cmd("Neorg return")
+			if vim.bo.ft == "markdown" then
+				project.set_pwd(vim.g.last_project_root, "keymap")
+				vim.cmd("silent! %bd!")
+				vim.cmd("silent! e " .. vim.g.last_project_file)
 			else
-				vim.cmd("Neorg index")
+				vim.g.last_project_root = project.get_project_root()
+				vim.g.last_project_file = vim.fn.expand("%:.")
+				project.set_pwd("~/notes/", "keymap")
+				vim.cmd("e index.md")
 			end
 		end)
 	end,
