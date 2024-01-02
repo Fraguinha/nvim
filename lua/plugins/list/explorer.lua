@@ -6,7 +6,7 @@ return {
 	config = function()
 		local api = require("nvim-tree.api")
 
-		vim.keymap.set("n", "<Tab><Tab>", function()
+		vim.keymap.set("n", "<Esc><Esc>", function()
 			api.tree.toggle()
 		end)
 

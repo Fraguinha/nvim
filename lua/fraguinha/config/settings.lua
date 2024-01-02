@@ -3,8 +3,8 @@ vim.g.loaded_netrwPlugin = 1
 
 vim.wo.signcolumn = "yes"
 
-vim.opt.updatetime = 1000
-vim.opt.timeoutlen = 1000
+vim.opt.updatetime = 250
+vim.opt.timeoutlen = 300
 
 vim.opt.mouse = "a"
 

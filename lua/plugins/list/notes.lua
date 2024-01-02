@@ -9,6 +9,10 @@ return {
 					return text
 				end,
 			},
+			perspective = {
+				priority = "root",
+				root_tell = "index.md",
+			},
 		})
 
 		local project = require("project_nvim.project")
