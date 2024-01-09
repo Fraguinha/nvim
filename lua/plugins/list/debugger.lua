@@ -37,7 +37,7 @@ return {
 		end
 
 		local executable_config = function(filetype)
-			local executable = vim.fn.input("Debug executable: ", vim.fn.getcwd() .. "/", "file")
+			local executable = vim.fn.input({ "Debug executable: ", vim.fn.getcwd() .. "/", "file" })
 
 			local config = {
 				type = "codelldb",
@@ -82,7 +82,7 @@ return {
 		end)
 
 		dapui.setup()
-		dap_virtual_text.setup()
+		dap_virtual_text.setup({})
 
 		dap.listeners.after.event_initialized["dapui_config"] = dapui.open
 		dap.listeners.before.event_terminated["dapui_config"] = dapui.close

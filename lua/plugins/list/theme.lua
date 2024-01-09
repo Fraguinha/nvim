@@ -39,10 +39,7 @@ return {
 						background = true,
 					},
 				},
-				dap = {
-					enabled = true,
-					enable_ui = true,
-				},
+				dap = true,
 				telescope = {
 					enabled = true,
 					style = "classic",

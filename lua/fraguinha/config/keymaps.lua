@@ -1,9 +1,8 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- Copy to/Paste from clipboard
-vim.keymap.set("n", "<leader>y", '"+y')
-vim.keymap.set("n", "<leader>p", '"+p')
+-- Copy to clipboard
+vim.keymap.set("v", "<C-y>", '"+y')
 
 -- Change/Delete without yanking
 vim.keymap.set("n", "<leader>c", '"_c')
