@@ -6,7 +6,7 @@ return {
 	config = function()
 		local leap = require("leap")
 
-		vim.api.nvim_set_hl(0, "LeapLabelPrimary", { fg = "red", bg = "none" })
+		vim.api.nvim_set_hl(0, "LeapLabelPrimary", { fg = "magenta", bg = "none" })
 
 		vim.keymap.set("n", "s", function()
 			leap.leap({ target_windows = { vim.fn.win_getid() } })
