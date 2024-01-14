@@ -8,13 +8,12 @@ return {
 	},
 	config = function()
 		local tree = require("neo-tree")
-		local command = require("neo-tree.command")
 
 		tree.setup({
 			close_if_last_window = true,
 			use_default_mappings = false,
 			window = {
-				position = "left",
+				position = "current",
 				width = 80,
 				mapping_options = {
 					noremap = true,
@@ -22,9 +21,7 @@ return {
 				},
 				mappings = {
 					["<Tab><Tab>"] = "close_window",
-					["<space>"] = "open",
 					["<esc>"] = "cancel",
-					["<cr>"] = "open",
 					["a"] = {
 						"add",
 						config = {
@@ -40,6 +37,29 @@ return {
 					["c"] = "copy",
 					["m"] = "move",
 					["i"] = "show_file_details",
+					["h"] = function(state)
+						local node = state.tree:get_node()
+						if node.type == "directory" and node:is_expanded() then
+							require("neo-tree.sources.filesystem").toggle_directory(state, node)
+						else
+							require("neo-tree.ui.renderer").focus_node(state, node:get_parent_id())
+						end
+					end,
+					["l"] = function(state)
+						local node = state.tree:get_node()
+
+						if node.type == "directory" then
+							if not node:is_expanded() then
+								require("neo-tree.sources.filesystem").toggle_directory(state, node)
+							elseif node:has_children() then
+								require("neo-tree.ui.renderer").focus_node(state, node:get_child_ids()[1])
+							end
+						end
+
+						if node.type == "file" then
+							require("neo-tree.sources.common.commands").open(state, function() end)
+						end
+					end,
 				},
 			},
 			filesystem = {
@@ -58,20 +78,19 @@ return {
 						["<C-p>"] = "move_cursor_up",
 					},
 				},
-				commands = {},
 			},
 			event_handlers = {
 				{
 					event = "file_opened",
 					handler = function()
-						command.execute({ action = "close" })
+						require("neo-tree.command").execute({ action = "close" })
 					end,
 				},
 			},
 		})
 
 		vim.keymap.set("n", "<Tab><Tab>", function()
-			command.execute({ "toggle" })
+			require("neo-tree.command").execute({ action = "focus", reveal = true })
 		end)
 	end,
 }
