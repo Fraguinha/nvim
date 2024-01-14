@@ -1,28 +1,30 @@
-return {
-	"zbirenbaum/copilot.lua",
-	config = function()
-		require("copilot").setup({
-			panel = {
-				enabled = false,
-			},
-			suggestion = {
-				enabled = true,
-				auto_trigger = true,
-				keymap = {
-					accept = "<C-y>",
-					dismiss = "<C-e>",
-				},
-			},
-			filetypes = {
-				help = false,
-				gitcommit = false,
-				gitrebase = false,
-				hgcommit = false,
-				svn = false,
-				cvs = false,
-				["."] = false,
-			},
-			copilot_node_command = vim.fn.glob("~/.nvm/versions/node/v18.16.0/bin/node"),
-		})
-	end,
-}
+return {}
+
+-- return {
+-- 	"zbirenbaum/copilot.lua",
+-- 	config = function()
+-- 		require("copilot").setup({
+-- 			panel = {
+-- 				enabled = false,
+-- 			},
+-- 			suggestion = {
+-- 				enabled = true,
+-- 				auto_trigger = true,
+-- 				keymap = {
+-- 					accept = "<C-y>",
+-- 					dismiss = "<C-e>",
+-- 				},
+-- 			},
+-- 			filetypes = {
+-- 				help = false,
+-- 				gitcommit = false,
+-- 				gitrebase = false,
+-- 				hgcommit = false,
+-- 				svn = false,
+-- 				cvs = false,
+-- 				["."] = false,
+-- 			},
+-- 			copilot_node_command = vim.fn.glob("~/.nvm/versions/node/v18.16.0/bin/node"),
+-- 		})
+-- 	end,
+-- }

@@ -15,19 +15,26 @@ return {
 			},
 		})
 
-		local project = require("project_nvim.project")
-		vim.keymap.set("n", "<C-Tab>", function()
+		local function toggle_notes()
+			local project = require("project_nvim.project")
+			local notes_dir = "~/notes/"
+
 			vim.cmd("NvimTreeClose")
-			if vim.bo.ft == "markdown" then
+
+			local in_notes = vim.fn.expand("%:~"):find(notes_dir)
+			if not in_notes then
+				vim.g.last_project_root = project.get_project_root()
+				vim.g.last_project_file = vim.fn.expand("%:.")
+
+				project.set_pwd(notes_dir, "keymap")
+				vim.cmd("e index.md")
+			else
 				project.set_pwd(vim.g.last_project_root, "keymap")
 				vim.cmd("silent! %bd!")
 				vim.cmd("silent! e " .. vim.g.last_project_file)
-			else
-				vim.g.last_project_root = project.get_project_root()
-				vim.g.last_project_file = vim.fn.expand("%:.")
-				project.set_pwd("~/notes/", "keymap")
-				vim.cmd("e index.md")
 			end
-		end)
+		end
+
+		vim.keymap.set("n", "<C-Tab>", toggle_notes)
 	end,
 }
