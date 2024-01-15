@@ -99,6 +99,7 @@ return {
 					cmp.config.compare.length,
 					cmp.config.compare.order,
 				},
+				priority_weight = 1,
 			},
 		})
 

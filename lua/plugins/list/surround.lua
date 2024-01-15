@@ -15,6 +15,10 @@ return {
 				change = "ycs",
 				change_line = "ycsl",
 			},
+			aliases = {
+				["b"] = { ")", "}", "]" },
+				["q"] = { '"', "'", "`" },
+			},
 		})
 	end,
 }
