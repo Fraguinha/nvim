@@ -19,7 +19,7 @@ return {
 			local project = require("project_nvim.project")
 			local notes_dir = "~/notes/"
 
-			vim.cmd("NvimTreeClose")
+			vim.cmd("Neotree close")
 
 			local in_notes = vim.fn.expand("%:~"):find(notes_dir)
 			if not in_notes then
