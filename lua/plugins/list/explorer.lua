@@ -7,13 +7,11 @@ return {
 		"MunifTanjim/nui.nvim",
 	},
 	config = function()
-		local tree = require("neo-tree")
-
-		tree.setup({
+		require("neo-tree").setup({
 			close_if_last_window = true,
 			use_default_mappings = false,
 			window = {
-				position = "current",
+				position = "left",
 				width = 80,
 				mapping_options = {
 					noremap = true,
