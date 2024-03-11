@@ -1,21 +1,23 @@
 On_attach = function(_, bufnr)
 	local telescope = require("telescope.builtin")
 
-	vim.keymap.set("n", "gr", telescope.lsp_references, { buffer = bufnr })
 	vim.keymap.set("n", "gd", telescope.lsp_definitions, { buffer = bufnr })
-	vim.keymap.set("n", "gi", telescope.lsp_implementations, { buffer = bufnr })
+	vim.keymap.set("n", "gr", telescope.lsp_references, { buffer = bufnr })
+	vim.keymap.set("n", "gI", telescope.lsp_implementations, { buffer = bufnr })
 	vim.keymap.set("n", "gt", telescope.lsp_type_definitions, { buffer = bufnr })
-	vim.keymap.set("n", "<leader>ld", telescope.diagnostics, { buffer = bufnr })
 
+	vim.keymap.set("n", "<leader>ds", telescope.lsp_document_symbols, { buffer = bufnr })
+	vim.keymap.set("n", "<leader>ws", telescope.lsp_dynamic_workspace_symbols, { buffer = bufnr })
+
+	vim.keymap.set("n", "<leader>ld", telescope.diagnostics, { buffer = bufnr })
 	vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { buffer = bufnr })
 	vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { buffer = bufnr })
 
 	vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = bufnr })
 	vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, { buffer = bufnr })
 
-	vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, { buffer = bufnr })
-	vim.keymap.set("n", "<leader>lca", vim.lsp.buf.code_action, { buffer = bufnr })
-	vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, { buffer = bufnr })
+	vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { buffer = bufnr })
+	vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = bufnr })
 
 	vim.api.nvim_create_autocmd("CursorHold", {
 		buffer = bufnr,
@@ -53,9 +55,21 @@ return {
 	config = function()
 		local servers = {
 			lua_ls = {
-				Lua = {
-					workspace = { checkThirdParty = false },
-					telemetry = { enable = false },
+				settings = {
+					Lua = {
+						runtime = { version = "LuaJIT" },
+						workspace = {
+							checkThirdParty = false,
+							library = {
+								"${3rd}/luv/library",
+								unpack(vim.api.nvim_get_runtime_file("", true)),
+							},
+						},
+						completion = {
+							callSnippet = "Replace",
+						},
+						telemetry = { enable = false },
+					},
 				},
 			},
 			clangd = {},
@@ -83,19 +97,14 @@ return {
 		}
 
 		local mason_lspconfig = require("mason-lspconfig")
+		local cmp_lsp = require("cmp_nvim_lsp")
 
 		mason_lspconfig.setup({
 			ensure_installed = vim.tbl_keys(servers),
 		})
 
-		-- Setup diagnostics
-		local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
-		function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
-			local border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
-			opts = opts or {}
-			opts.border = opts.border or border
-			return orig_util_open_floating_preview(contents, syntax, opts, ...)
-		end
+		local capabilities = vim.lsp.protocol.make_client_capabilities()
+		capabilities = vim.tbl_deep_extend("force", capabilities, cmp_lsp.default_capabilities())
 
 		mason_lspconfig.setup_handlers({
 			function(server_name)
@@ -104,7 +113,7 @@ return {
 				end
 
 				require("lspconfig")[server_name].setup({
-					capabilities = Capabilities,
+					capabilities = capabilities,
 					on_attach = On_attach,
 					settings = servers[server_name],
 				})

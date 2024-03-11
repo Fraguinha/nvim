@@ -3,10 +3,6 @@ return {
 	dependencies = {
 		{
 			"hrsh7th/cmp-nvim-lsp",
-			config = function()
-				Capabilities = vim.lsp.protocol.make_client_capabilities()
-				Capabilities = require("cmp_nvim_lsp").default_capabilities(Capabilities)
-			end,
 		},
 		{
 			"hrsh7th/cmp-nvim-lua",
