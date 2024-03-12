@@ -3,43 +3,34 @@ return {
 	dependencies = {
 		{ "nvim-lua/plenary.nvim" },
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-		{ "nvim-telescope/telescope-frecency.nvim" },
 		{ "nvim-telescope/telescope-ui-select.nvim" },
 		{ "nvim-telescope/telescope-dap.nvim" },
 	},
 	config = function()
 		local telescope = require("telescope")
 		local builtin = require("telescope.builtin")
-		local frecency = telescope.extensions.frecency
 
 		-- Projects
 		vim.keymap.set("n", "<C-CR>", telescope.extensions.projects.projects)
 
+		-- Fuzzy find
+		vim.keymap.set("n", "<leader>ff", function()
+			builtin.live_grep({ path_display = { "truncate" } })
+		end)
+
 		-- Fuzzy find files
 		vim.keymap.set("n", "<leader><leader>", function()
-			frecency.frecency({
+			builtin.find_files({
 				path_display = { "truncate" },
 			})
 		end)
 
-		-- Fuzzy find in file
-		vim.keymap.set("n", "<leader>ff", function()
+		-- Fuzzy find in buffer
+		vim.keymap.set("n", "<leader>fb", function()
 			builtin.current_buffer_fuzzy_find({ previewer = false })
 		end)
 
-		-- Fuzzy find buffers
-		vim.keymap.set("n", "<leader>fb", function()
-			builtin.buffers({
-				path_display = { "truncate" },
-				sort_lastused = true,
-				ignore_current_buffer = true,
-			})
-		end)
-
-		-- Fuzzy find words
-		vim.keymap.set("n", "<leader>fg", function()
-			builtin.live_grep({ path_display = { "truncate" } })
-		end)
+		-- Fuzzy find word
 		vim.keymap.set("v", "<leader>fw", function()
 			builtin.grep_string({ path_display = { "truncate" } })
 		end)
@@ -78,10 +69,6 @@ return {
 				},
 			},
 			extensions = {
-				frecency = {
-					default_workspace = "CWD",
-					ignore_patterns = { "*.git/*" },
-				},
 				ui_select = {
 					require("telescope.themes").get_dropdown({}),
 				},
@@ -89,7 +76,6 @@ return {
 		})
 
 		telescope.load_extension("fzf")
-		telescope.load_extension("frecency")
 		telescope.load_extension("ui-select")
 		telescope.load_extension("dap")
 	end,
