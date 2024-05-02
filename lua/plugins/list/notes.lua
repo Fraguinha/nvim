@@ -35,6 +35,6 @@ return {
 			end
 		end
 
-		vim.keymap.set("n", "<C-Tab>", toggle_notes)
+		vim.keymap.set("n", "<BS><BS>", toggle_notes)
 	end,
 }

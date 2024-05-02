@@ -11,18 +11,16 @@ return {
 		local builtin = require("telescope.builtin")
 
 		-- Projects
-		vim.keymap.set("n", "<C-CR>", telescope.extensions.projects.projects)
+		vim.keymap.set("n", "<CR><CR>", telescope.extensions.projects.projects)
+
+		-- Fuzzy find files
+		vim.keymap.set("n", "<leader><leader>", function()
+			builtin.find_files({ path_display = { "truncate" } })
+		end)
 
 		-- Fuzzy find
 		vim.keymap.set("n", "<leader>ff", function()
 			builtin.live_grep({ path_display = { "truncate" } })
-		end)
-
-		-- Fuzzy find files
-		vim.keymap.set("n", "<leader><leader>", function()
-			builtin.find_files({
-				path_display = { "truncate" },
-			})
 		end)
 
 		-- Fuzzy find in buffer
