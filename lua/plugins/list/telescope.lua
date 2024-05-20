@@ -11,30 +11,25 @@ return {
 		local builtin = require("telescope.builtin")
 
 		-- Projects
-		vim.keymap.set("n", "<CR><CR>", telescope.extensions.projects.projects)
-
-		-- Fuzzy find files
-		vim.keymap.set("n", "<leader><leader>", function()
-			builtin.find_files({ path_display = { "truncate" } })
+		vim.keymap.set("n", "<CR><CR>", function()
+			vim.cmd("bufdo bd")
+			telescope.extensions.projects.projects()
 		end)
 
 		-- Fuzzy find
-		vim.keymap.set("n", "<leader>ff", function()
+		vim.keymap.set("n", "<leader><leader>", function()
 			builtin.live_grep({ path_display = { "truncate" } })
 		end)
 
-		-- Fuzzy find in buffer
-		vim.keymap.set("n", "<leader>fb", function()
-			builtin.current_buffer_fuzzy_find({ previewer = false })
-		end)
-
 		-- Fuzzy find word
-		vim.keymap.set("v", "<leader>fw", function()
+		vim.keymap.set("v", "<leader><leader>", function()
 			builtin.grep_string({ path_display = { "truncate" } })
 		end)
 
-		-- Resume last fuzzy search
-		vim.keymap.set("n", "<leader>fr", builtin.resume)
+		-- Fuzzy find files
+		vim.keymap.set("n", "<leader><Tab>", function()
+			builtin.find_files({ path_display = { "truncate" } })
+		end)
 
 		-- Help
 		vim.keymap.set("n", "<leader>fd", builtin.diagnostics)

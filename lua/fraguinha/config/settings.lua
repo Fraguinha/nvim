@@ -54,6 +54,6 @@ vim.opt.smartcase = true
 
 vim.opt.scrolloff = 8
 
-vim.opt.completeopt = "menuone,noselect"
+vim.opt.completeopt = { "menu", "menuone", "noselect" }
 
 vim.opt.termguicolors = true

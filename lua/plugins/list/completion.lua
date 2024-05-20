@@ -26,6 +26,7 @@ return {
 		},
 		{
 			"L3MON4D3/LuaSnip",
+			build = "make install_jsregexp",
 			opts = {},
 		},
 		{
@@ -40,6 +41,13 @@ return {
 			history = true,
 			updateevents = "TextChanged,TextChangedI",
 			enable_autosnippets = true,
+		})
+
+		cmp.setup.filetype({ "sql" }, {
+			sources = {
+				{ name = "vim-dadbod-completion" },
+				{ name = "buffer", keyword_length = 5 },
+			},
 		})
 
 		cmp.setup({
@@ -98,13 +106,5 @@ return {
 				priority_weight = 1,
 			},
 		})
-
-		cmp.event:on("menu_opened", function()
-			vim.b["copilot_suggestion_hidden"] = true
-		end)
-
-		cmp.event:on("menu_closed", function()
-			vim.b["copilot_suggestion_hidden"] = false
-		end)
 	end,
 }
