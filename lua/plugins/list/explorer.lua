@@ -76,6 +76,8 @@ return {
 						["<C-p>"] = "move_cursor_up",
 					},
 				},
+				scan_mode = "deep",
+				group_empty_dirs = true,
 			},
 			event_handlers = {
 				{

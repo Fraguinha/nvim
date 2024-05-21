@@ -91,7 +91,7 @@ return {
 
 			local opts = { buffer = bufnr }
 			vim.keymap.set("n", "<leader>df", ":lua require('jdtls').test_class()<cr>", opts)
-			vim.keymap.set("n", "<leader>dn", ":lua require('jdtls').test_nearest_method()<cr>", opts)
+			vim.keymap.set("n", "<leader>dm", ":lua require('jdtls').test_nearest_method()<cr>", opts)
 		end
 
 		local function jdtls_on_attach(client, bufnr)
@@ -106,12 +106,12 @@ return {
 			end
 
 			local opts = { buffer = bufnr }
-			vim.keymap.set("n", "cro>", ":lua require('jdtls').organize_imports()<cr>", opts)
-			vim.keymap.set("n", "crv", ":lua require('jdtls').extract_variable()<cr>", opts)
-			vim.keymap.set("x", "crv", "<esc>:lua require('jdtls').extract_variable(true)<cr>", opts)
-			vim.keymap.set("n", "crc", ":lua require('jdtls').extract_constant()<cr>", opts)
-			vim.keymap.set("x", "crc", "<esc>:lua require('jdtls').extract_constant(true)<cr>", opts)
-			vim.keymap.set("x", "crm", "<esc>:lua require('jdtls').extract_method(true)<cr>", opts)
+			vim.keymap.set("n", "<leader>ri", ":lua require('jdtls').organize_imports()<cr>", opts)
+			vim.keymap.set("n", "<leader>rv", ":lua require('jdtls').extract_variable()<cr>", opts)
+			vim.keymap.set("x", "<leader>rv", "<esc>:lua require('jdtls').extract_variable(true)<cr>", opts)
+			vim.keymap.set("n", "<leader>rc", ":lua require('jdtls').extract_constant()<cr>", opts)
+			vim.keymap.set("x", "<leader>rc", "<esc>:lua require('jdtls').extract_constant(true)<cr>", opts)
+			vim.keymap.set("x", "<leader>rm", "<esc>:lua require('jdtls').extract_method(true)<cr>", opts)
 		end
 
 		local function jdtls_setup()
@@ -166,12 +166,6 @@ return {
 					configuration = {
 						updateBuildConfiguration = "interactive",
 						runtimes = path.runtimes,
-					},
-					eclipse = {
-						downloadSources = true,
-					},
-					maven = {
-						downloadSources = true,
 					},
 					signatureHelp = {
 						enabled = true,

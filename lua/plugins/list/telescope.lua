@@ -37,11 +37,6 @@ return {
 		vim.keymap.set("n", "<leader>fk", builtin.keymaps)
 		vim.keymap.set("n", "<leader>fm", builtin.man_pages)
 
-		-- Neovim
-		vim.keymap.set("n", "<leader>fn", function()
-			builtin.find_files({ cwd = vim.fn.stdpath("config") })
-		end)
-
 		telescope.setup({
 			defaults = {
 				layout_strategy = "vertical",

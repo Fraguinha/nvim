@@ -27,14 +27,10 @@ return {
 				return "<Ignore>"
 			end, { buffer = bufnr })
 
-			vim.keymap.set("n", "<leader>gs", gs.stage_hunk)
-			vim.keymap.set("n", "<leader>gu", gs.undo_stage_hunk)
-			vim.keymap.set("n", "<leader>gr", gs.reset_hunk)
-			vim.keymap.set("n", "<leader>gg", gs.preview_hunk_inline)
-			vim.keymap.set("n", "<leader>gd", gs.toggle_deleted)
-			vim.keymap.set("n", "<leader>gb", function()
-				gs.blame_line({ full = true })
-			end)
+			vim.keymap.set("n", "gs", gs.stage_hunk)
+			vim.keymap.set("n", "ga", gs.stage_buffer)
+			vim.keymap.set("n", "gu", gs.reset_hunk)
+			vim.keymap.set("n", "gh", gs.preview_hunk_inline)
 
 			-- Text object
 			vim.keymap.set({ "o", "x" }, "ic", ":<C-U>Gitsigns select_hunk<CR>")

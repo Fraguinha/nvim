@@ -6,6 +6,8 @@ return {
 	config = function()
 		local leap = require("leap")
 
+		leap.opts.safe_labels = {}
+
 		vim.api.nvim_set_hl(0, "LeapLabelPrimary", { fg = "magenta", bg = "none" })
 
 		vim.keymap.set("n", "s", function()

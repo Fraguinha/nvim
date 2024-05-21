@@ -71,10 +71,10 @@ return {
 			dap.run(config)
 		end
 
-		vim.keymap.set("n", "<F1>", dap.continue)
-		vim.keymap.set("n", "<F2>", dap.step_into)
-		vim.keymap.set("n", "<F3>", dap.step_over)
-		vim.keymap.set("n", "<F4>", dap.step_out)
+		vim.keymap.set("n", "<F1>", dap.step_into)
+		vim.keymap.set("n", "<F2>", dap.step_over)
+		vim.keymap.set("n", "<F3>", dap.step_out)
+		vim.keymap.set("n", "<F4>", dap.continue)
 		vim.keymap.set("n", "<F5>", debug)
 		vim.keymap.set("n", "<F8>", dapui.toggle)
 		vim.keymap.set("n", "<leader>b", dap.toggle_breakpoint)
