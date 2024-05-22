@@ -7,6 +7,46 @@ return {
 		"MunifTanjim/nui.nvim",
 	},
 	config = function()
+		local function collapse_directory_or_go_to_parent(state)
+			local node = state.tree:get_node()
+			if node.type == "directory" and node:is_expanded() then
+				require("neo-tree.sources.filesystem").toggle_directory(state, node)
+			else
+				require("neo-tree.ui.renderer").focus_node(state, node:get_parent_id())
+			end
+		end
+
+		local function expand_directory_or_go_to_child_or_open_file(state)
+			local node = state.tree:get_node()
+			if node.type == "directory" then
+				if not node:is_expanded() then
+					require("neo-tree.sources.filesystem").toggle_directory(state, node)
+				elseif node:has_children() then
+					require("neo-tree.ui.renderer").focus_node(state, node:get_child_ids()[1])
+				end
+			end
+			if node.type == "file" then
+				require("neo-tree.sources.common.commands").open(state, function() end)
+			end
+		end
+
+		local function git_toggle_staged(state)
+			local toplevel = vim.system({ "git", "rev-parse", "--show-toplevel" }, { text = true })
+				:wait().stdout
+				:gsub("\n", "/")
+			local staged_files = vim.system({ "git", "diff", "--cached", "--name-only" }, { text = true })
+				:wait().stdout
+				:gsub("\n", ";")
+			local node = state.tree:get_node()
+			local path = node:get_id():gsub(toplevel, "")
+			if not staged_files:find(path) then
+				vim.fn.system({ "git", "add", path })
+			else
+				vim.fn.system({ "git", "reset", "--", path })
+			end
+			require("neo-tree.events").fire_event(require("neo-tree.events").GIT_EVENT)
+		end
+
 		require("neo-tree").setup({
 			close_if_last_window = true,
 			use_default_mappings = false,
@@ -35,29 +75,8 @@ return {
 					["c"] = "copy",
 					["m"] = "move",
 					["i"] = "show_file_details",
-					["h"] = function(state)
-						local node = state.tree:get_node()
-						if node.type == "directory" and node:is_expanded() then
-							require("neo-tree.sources.filesystem").toggle_directory(state, node)
-						else
-							require("neo-tree.ui.renderer").focus_node(state, node:get_parent_id())
-						end
-					end,
-					["l"] = function(state)
-						local node = state.tree:get_node()
-
-						if node.type == "directory" then
-							if not node:is_expanded() then
-								require("neo-tree.sources.filesystem").toggle_directory(state, node)
-							elseif node:has_children() then
-								require("neo-tree.ui.renderer").focus_node(state, node:get_child_ids()[1])
-							end
-						end
-
-						if node.type == "file" then
-							require("neo-tree.sources.common.commands").open(state, function() end)
-						end
-					end,
+					["h"] = collapse_directory_or_go_to_parent,
+					["l"] = expand_directory_or_go_to_child_or_open_file,
 				},
 			},
 			filesystem = {
@@ -67,25 +86,7 @@ return {
 						["/"] = "fuzzy_finder",
 						["[c"] = "prev_git_modified",
 						["]c"] = "next_git_modified",
-						["gs"] = function(state)
-							local toplevel = vim.system({ "git", "rev-parse", "--show-toplevel" }, { text = true })
-								:wait().stdout
-								:gsub("\n", "/")
-							local staged_files = vim.system(
-								{ "git", "diff", "--cached", "--name-only" },
-								{ text = true }
-							)
-								:wait().stdout
-								:gsub("\n", ";")
-							local node = state.tree:get_node()
-							local path = node:get_id():gsub(toplevel, "")
-							if not staged_files:find(path) then
-								vim.fn.system({ "git", "add", path })
-							else
-								vim.fn.system({ "git", "reset", "--", path })
-							end
-							require("neo-tree.events").fire_event(require("neo-tree.events").GIT_EVENT)
-						end,
+						["gs"] = git_toggle_staged,
 						["gu"] = "git_revert_file",
 					},
 					fuzzy_finder_mappings = {
