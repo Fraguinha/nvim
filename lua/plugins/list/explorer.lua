@@ -67,9 +67,26 @@ return {
 						["/"] = "fuzzy_finder",
 						["[c"] = "prev_git_modified",
 						["]c"] = "next_git_modified",
-						["gu"] = "git_unstage_file",
-						["ga"] = "git_add_file",
-						["gr"] = "git_revert_file",
+						["gs"] = function(state)
+							local toplevel = vim.system({ "git", "rev-parse", "--show-toplevel" }, { text = true })
+								:wait().stdout
+								:gsub("\n", "/")
+							local staged_files = vim.system(
+								{ "git", "diff", "--cached", "--name-only" },
+								{ text = true }
+							)
+								:wait().stdout
+								:gsub("\n", ";")
+							local node = state.tree:get_node()
+							local path = node:get_id():gsub(toplevel, "")
+							if not staged_files:find(path) then
+								vim.fn.system({ "git", "add", path })
+							else
+								vim.fn.system({ "git", "reset", "--", path })
+							end
+							require("neo-tree.events").fire_event(require("neo-tree.events").GIT_EVENT)
+						end,
+						["gu"] = "git_revert_file",
 					},
 					fuzzy_finder_mappings = {
 						["<C-n>"] = "move_cursor_down",

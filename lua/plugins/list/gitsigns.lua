@@ -28,7 +28,6 @@ return {
 			end, { buffer = bufnr })
 
 			vim.keymap.set("n", "gs", gs.stage_hunk)
-			vim.keymap.set("n", "ga", gs.stage_buffer)
 			vim.keymap.set("n", "gu", gs.reset_hunk)
 			vim.keymap.set("n", "gh", gs.preview_hunk_inline)
 
