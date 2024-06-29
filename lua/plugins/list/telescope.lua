@@ -11,31 +11,34 @@ return {
 		local builtin = require("telescope.builtin")
 
 		-- Projects
-		vim.keymap.set("n", "<CR><CR>", function()
+		vim.keymap.set("n", "sp", function()
 			vim.cmd("bufdo bd")
 			telescope.extensions.projects.projects()
 		end)
 
-		-- Fuzzy find
-		vim.keymap.set("n", "<leader><leader>", function()
-			builtin.live_grep({ path_display = { "truncate" } })
-		end)
-
-		-- Fuzzy find word
-		vim.keymap.set("v", "<leader><leader>", function()
-			builtin.grep_string({ path_display = { "truncate" } })
-		end)
-
 		-- Fuzzy find files
-		vim.keymap.set("n", "<leader><Tab>", function()
+		vim.keymap.set("n", "sf", function()
 			builtin.find_files({ path_display = { "truncate" } })
 		end)
 
+		-- Fuzzy find
+		vim.keymap.set("n", "sg", function()
+			builtin.live_grep({ path_display = { "truncate" } })
+		end)
+		-- Fuzzy find word
+		vim.keymap.set("v", "sg", function()
+			builtin.grep_string({ path_display = { "truncate" } })
+		end)
+
+		-- Fuzzy find word
+		vim.keymap.set("n", "sb", function()
+			builtin.current_buffer_fuzzy_find({ path_display = { "truncate" } })
+		end)
+
 		-- Help
-		vim.keymap.set("n", "<leader>fd", builtin.diagnostics)
-		vim.keymap.set("n", "<leader>fh", builtin.help_tags)
-		vim.keymap.set("n", "<leader>fk", builtin.keymaps)
-		vim.keymap.set("n", "<leader>fm", builtin.man_pages)
+		vim.keymap.set("n", "sd", builtin.diagnostics)
+		vim.keymap.set("n", "sh", builtin.help_tags)
+		vim.keymap.set("n", "sk", builtin.keymaps)
 
 		telescope.setup({
 			defaults = {
@@ -58,7 +61,7 @@ return {
 			},
 			extensions = {
 				ui_select = {
-					require("telescope.themes").get_dropdown({}),
+					require("telescope.themes").get_dropdown(),
 				},
 			},
 		})

@@ -11,15 +11,10 @@ return {
 		local dap = require("dap")
 		local dapui = require("dapui")
 		local dap_virtual_text = require("nvim-dap-virtual-text")
-
-		require("mason-nvim-dap").setup({
-			automatic_setup = true,
-			handlers = {},
-			ensure_installed = { "codelldb", "java-debug-adapter", "java-test", "js-debug-adapter" },
-		})
+		local mason_nvim_dap = require("mason-nvim-dap")
 
 		local remote_config = function(filetype)
-			local host_name = vim.fn.input("Debug hostname: ")
+			local host_name = vim.fn.input("Debug hostname [default: 127.0.0.1]: ")
 			local port = vim.fn.input("Debug port: ")
 
 			if host_name == "" then
@@ -74,13 +69,28 @@ return {
 		vim.keymap.set("n", "<F1>", dap.step_into)
 		vim.keymap.set("n", "<F2>", dap.step_over)
 		vim.keymap.set("n", "<F3>", dap.step_out)
-		vim.keymap.set("n", "<F4>", dap.continue)
+		vim.keymap.set("n", "<F4>", dap.step_back)
+
 		vim.keymap.set("n", "<F5>", debug)
+		vim.keymap.set("n", "<F6>", dap.continue)
+		vim.keymap.set("n", "<F7>", dap.restart)
 		vim.keymap.set("n", "<F8>", dapui.toggle)
+
 		vim.keymap.set("n", "<leader>b", dap.toggle_breakpoint)
 		vim.keymap.set("n", "<leader>B", function()
 			dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
 		end)
+
+		vim.keymap.set("n", "<leader>c", dap.run_to_cursor)
+		vim.keymap.set("n", "<leader>e", function()
+			dapui.eval()
+		end)
+
+		mason_nvim_dap.setup({
+			automatic_installation = true,
+			handlers = {},
+			ensure_installed = { "codelldb", "java-debug-adapter", "java-test", "js-debug-adapter" },
+		})
 
 		dapui.setup()
 		dap_virtual_text.setup({})

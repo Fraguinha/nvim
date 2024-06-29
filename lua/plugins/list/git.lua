@@ -16,7 +16,7 @@ return {
 			kind = "replace",
 		})
 
-		vim.keymap.set("n", "<leader><CR>", function()
+		vim.keymap.set("n", "<C-g>", function()
 			vim.cmd("Neotree close")
 			if vim.bo.ft == "NeogitStatus" then
 				vim.cmd.normal("q")

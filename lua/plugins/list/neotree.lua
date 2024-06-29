@@ -7,12 +7,19 @@ return {
 		"MunifTanjim/nui.nvim",
 	},
 	config = function()
+		local neotree = require("neo-tree")
+		local filesystem = require("neo-tree.sources.filesystem")
+		local renderer = require("neo-tree.ui.renderer")
+		local common_commands = require("neo-tree.sources.common.commands")
+		local events = require("neo-tree.events")
+		local command = require("neo-tree.command")
+
 		local function collapse_directory_or_go_to_parent(state)
 			local node = state.tree:get_node()
 			if node.type == "directory" and node:is_expanded() then
-				require("neo-tree.sources.filesystem").toggle_directory(state, node)
+				filesystem.toggle_directory(state, node)
 			else
-				require("neo-tree.ui.renderer").focus_node(state, node:get_parent_id())
+				renderer.focus_node(state, node:get_parent_id())
 			end
 		end
 
@@ -20,13 +27,13 @@ return {
 			local node = state.tree:get_node()
 			if node.type == "directory" then
 				if not node:is_expanded() then
-					require("neo-tree.sources.filesystem").toggle_directory(state, node)
+					filesystem.toggle_directory(state, node)
 				elseif node:has_children() then
-					require("neo-tree.ui.renderer").focus_node(state, node:get_child_ids()[1])
+					renderer.focus_node(state, node:get_child_ids()[1])
 				end
 			end
 			if node.type == "file" then
-				require("neo-tree.sources.common.commands").open(state, function() end)
+				common_commands.open(state, function() end)
 			end
 		end
 
@@ -44,10 +51,10 @@ return {
 			else
 				vim.fn.system({ "git", "reset", "--", path })
 			end
-			require("neo-tree.events").fire_event(require("neo-tree.events").GIT_EVENT)
+			events.fire_event(events.GIT_EVENT)
 		end
 
-		require("neo-tree").setup({
+		neotree.setup({
 			close_if_last_window = true,
 			use_default_mappings = false,
 			window = {
@@ -101,14 +108,14 @@ return {
 				{
 					event = "file_opened",
 					handler = function()
-						require("neo-tree.command").execute({ action = "close" })
+						command.execute({ action = "close" })
 					end,
 				},
 			},
 		})
 
 		vim.keymap.set("n", "<Tab><Tab>", function()
-			require("neo-tree.command").execute({ action = "focus", reveal = true })
+			command.execute({ action = "focus", reveal = true })
 		end)
 	end,
 }

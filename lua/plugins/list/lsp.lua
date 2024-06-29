@@ -41,7 +41,13 @@ return {
 		},
 		{
 			"j-hui/fidget.nvim",
-			opts = {},
+			opts = {
+				progress = {
+					display = {
+						render_limit = 8,
+					},
+				},
+			},
 		},
 		{
 			"folke/neodev.nvim",

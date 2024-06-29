@@ -9,7 +9,7 @@ return {
 			javascriptreact = { "eslint_d" },
 			typescriptreact = { "eslint_d" },
 			json = { "jsonlint" },
-			yaml = { "yamllint" },
+			-- yaml = { "yamllint" },
 			sh = { "shellcheck" },
 		}
 
