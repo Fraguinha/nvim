@@ -35,6 +35,8 @@ return {
   { import = "astrocommunity.pack.xml" },
   -- Docker
   { import = "astrocommunity.pack.docker" },
+  -- C/C++
+  { import = "astrocommunity.pack.cpp" },
   -- Java
   { import = "astrocommunity.pack.java" },
   -- Go
