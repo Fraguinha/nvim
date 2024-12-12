@@ -6,3 +6,40 @@
 --
 -- Or remove existing autocmds by their group name (which is prefixed with `lazyvim_` for the defaults)
 -- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
+
+-- Sync buffers with external changes
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
+  command = "checktime",
+})
+
+-- Auto format
+local format_group = vim.api.nvim_create_augroup("format_group", { clear = true })
+
+-- No automatic comments
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+  group = format_group,
+  pattern = "*",
+  command = "set formatoptions-=o",
+})
+
+-- Remove trailing whitespaces
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+  group = format_group,
+  pattern = "*",
+  command = [[%s/\s\+$//e]],
+})
+
+-- Remove tailing newlines
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+  group = format_group,
+  pattern = "*",
+  command = [[%s/\(\n\)\+\%$//e]],
+})
+
+-- Add picked files to pi
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "snacks_picker_list",
+  callback = function(event)
+    vim.keymap.set("n", "<leader>as", Fraguinha.pi.add_picked, { buffer = event.buf, desc = "Add file" })
+  end,
+})
