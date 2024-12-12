@@ -1,0 +1,1 @@
+require("fraguinha.config.treesitter")
