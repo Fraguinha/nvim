@@ -36,10 +36,9 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   command = [[%s/\(\n\)\+\%$//e]],
 })
 
--- Add picked files to pi
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "snacks_picker_list",
   callback = function(event)
-    vim.keymap.set("n", "<leader>as", Fraguinha.pi.add_picked, { buffer = event.buf, desc = "Add file" })
+    vim.keymap.set("n", "<leader>as", Fraguinha.omp.add_picked, { buffer = event.buf, desc = "Add file" })
   end,
 })

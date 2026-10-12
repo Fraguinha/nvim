@@ -5,7 +5,7 @@
 -- terminal
 local function navigate(direction)
   return function()
-    Fraguinha.pi.navigate(direction)
+    Fraguinha.omp.navigate(direction)
   end
 end
 
@@ -26,12 +26,14 @@ end, { desc = "Git Blame" })
 -- GitHub
 vim.keymap.set("n", "<leader>go", Fraguinha.github.open_in_neovim, { desc = "Open GitHub link in Neovim" })
 
--- pi
-vim.keymap.set("n", "<leader>aa", Fraguinha.pi.toggle, { desc = "Toggle pi" })
-vim.keymap.set("n", "<leader>af", Fraguinha.pi.focus, { desc = "Focus pi" })
-vim.keymap.set("n", "<leader>ab", Fraguinha.pi.add_buffer, { desc = "Add buffer" })
-vim.keymap.set("x", "<leader>as", Fraguinha.pi.add_selection, { desc = "Add selection" })
-vim.keymap.set("n", "<leader>as", Fraguinha.pi.add_line, { desc = "Add line" })
-vim.keymap.set("n", "<leader>ad", Fraguinha.pi.add_diagnostics, { desc = "Add diagnostics" })
-vim.keymap.set("n", "<leader>ap", Fraguinha.pi.prompt, { desc = "Prompt pi" })
-vim.keymap.set("n", "<leader>aq", Fraguinha.pi.close, { desc = "Close pi" })
+vim.keymap.set({ "n", "x" }, "<leader>aa", Fraguinha.omp.toggle, { desc = "Toggle OMP" })
+vim.keymap.set({ "n", "x" }, "<leader>af", Fraguinha.omp.focus, { desc = "Focus OMP" })
+vim.keymap.set({ "n", "x" }, "<leader>ab", Fraguinha.omp.add_buffer, { desc = "Add buffer" })
+vim.keymap.set("x", "<leader>as", Fraguinha.omp.add_selection, { desc = "Add selection" })
+vim.keymap.set("n", "<leader>as", Fraguinha.omp.add_line, { desc = "Add line" })
+vim.keymap.set("n", "<leader>ad", Fraguinha.omp.add_workspace_diagnostics, { desc = "Add workspace diagnostics" })
+vim.keymap.set("x", "<leader>ad", Fraguinha.omp.add_selection_diagnostics, { desc = "Add selection diagnostics" })
+vim.keymap.set("n", "<leader>aD", Fraguinha.omp.add_buffer_diagnostics, { desc = "Add buffer diagnostics" })
+vim.keymap.set("n", "<leader>ap", Fraguinha.omp.prompt, { desc = "Prompt OMP" })
+vim.keymap.set("x", "<leader>ap", Fraguinha.omp.prompt_selection, { desc = "Prompt OMP with selection" })
+vim.keymap.set({ "n", "x" }, "<leader>aq", Fraguinha.omp.close, { desc = "Close OMP" })
